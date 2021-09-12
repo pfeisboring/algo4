@@ -1,0 +1,42 @@
+FUNCTION card_search(arr : ARRAY_OF INTEGER, card : INTEGER) : INTEGER
+VAR
+  i : INTEGER;
+BEGIN
+   i := 0;
+   WHILE (i< arr.length) DO
+      IF (arr[i] = card) THEN
+          RETURN i; 
+      END_IF
+      i := i+1; 
+   END_WHILE
+  
+   RETURN -1 ;
+END
+
+
+PROCEDURE swap(VAR xp, VAR yp : INTEGER)
+VAR
+   tmp : INTEGER;
+BEGIN
+  tmp := xp;
+  xp := yp;
+  yp := tmp;
+END
+
+
+PROCEDURE selection_sort(VAR arr : ARRAY_OF INTEGER)
+VAR
+   i,j,max_idx,n : INTEGER;
+BEGIN
+   n := arr.length;
+  
+   FOR i FROM 0 TO n-1 STEP 1  DO
+       max_idx := i-1;
+       FOR j  FROM i  TO n-i-1 STEP 1  DO
+           IF (arr[j]<arr[max_idx]) THEN
+               max_idx := j-1;
+           END_IF
+       END_FOR
+   swap(arr[max_idx],arr[i])
+   END_FOR
+END
